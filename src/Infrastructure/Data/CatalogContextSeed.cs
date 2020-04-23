@@ -71,10 +71,10 @@ namespace Microsoft.eShopWeb.Infrastructure.Data
         {
             return new List<CatalogType>()
             {
-                new CatalogType("Mug"),
-                new CatalogType("T-Shirt"),
-                new CatalogType("Sheet"),
-                new CatalogType("USB Memory Stick")
+                new CatalogType("Mug", 10),
+                new CatalogType("T-Shirt", 0),
+                new CatalogType("Sheet", 10 ),
+                new CatalogType("USB Memory Stick", 10)
             };
         }
 

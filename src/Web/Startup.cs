@@ -188,7 +188,7 @@ namespace Microsoft.eShopWeb.Web
                 });
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+               // app.UseDeveloperExceptionPage();
                 app.UseShowAllServicesMiddleware();
                 app.UseDatabaseErrorPage();
             }

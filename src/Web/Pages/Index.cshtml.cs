@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.eShopWeb.ApplicationCore.Entities;
+using Microsoft.eShopWeb.ApplicationCore.Interfaces;
 using Microsoft.eShopWeb.Web.Services;
 using Microsoft.eShopWeb.Web.ViewModels;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Microsoft.eShopWeb.Web.Pages
@@ -8,9 +11,11 @@ namespace Microsoft.eShopWeb.Web.Pages
     public class IndexModel : PageModel
     {
         private readonly ICatalogViewModelService _catalogViewModelService;
+        readonly IAsyncRepository<CatalogType> typeRepository;
 
-        public IndexModel(ICatalogViewModelService catalogViewModelService)
+        public IndexModel(ICatalogViewModelService catalogViewModelService, IAsyncRepository<CatalogType> typeRepository)
         {
+            this.typeRepository = typeRepository;
             _catalogViewModelService = catalogViewModelService;
         }
 
@@ -18,7 +23,8 @@ namespace Microsoft.eShopWeb.Web.Pages
 
         public async Task OnGet(CatalogIndexViewModel catalogModel, int? pageId)
         {
-            CatalogModel = await _catalogViewModelService.GetCatalogItems(pageId ?? 0, Constants.ITEMS_PER_PAGE, catalogModel.BrandFilterApplied, catalogModel.TypesFilterApplied);
+            int itemsPage = catalogModel.TypesFilterApplied.HasValue ? (await typeRepository.ListAllAsync()).Single(x => x.Id == catalogModel.TypesFilterApplied).ItemsToDisplay : 10;
+            CatalogModel = await _catalogViewModelService.GetCatalogItems(pageId ?? 0, itemsPage, catalogModel.BrandFilterApplied, catalogModel.TypesFilterApplied);
         }
     }
 }
