@@ -12,6 +12,8 @@ namespace Microsoft.eShopWeb.Web.Pages.Basket
 
         [Range(0, int.MaxValue, ErrorMessage = "Quantity must be bigger than 0")]
         public int Quantity { get; set; }
+
+        public decimal ShippingPrice { get; set; }
         
         public string PictureUrl { get; set; }
     }

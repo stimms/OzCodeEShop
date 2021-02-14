@@ -14,14 +14,17 @@ namespace Microsoft.eShopWeb.ApplicationCore.Entities
         public CatalogType CatalogType { get; private set; }
         public int CatalogBrandId { get; private set; }
         public CatalogBrand CatalogBrand { get; private set; }
+        public decimal ShippingPrice { get; set; }
 
         public CatalogItem(int catalogTypeId,
             int catalogBrandId,
             string description,
             string name,
             decimal price,
+            decimal shippingPrice,
             string pictureUri)
         {
+            ShippingPrice = shippingPrice;
             CatalogTypeId = catalogTypeId;
             CatalogBrandId = catalogBrandId;
             Description = description;

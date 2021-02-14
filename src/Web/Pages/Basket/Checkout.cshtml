@@ -19,6 +19,7 @@
                 <section class="esh-basket-title col-xs-3">Product</section>
                 <section class="esh-basket-title col-xs-3 hidden-lg-down"></section>
                 <section class="esh-basket-title col-xs-2">Price</section>
+                <section class="esh-basket-title col-xs-2">Shipping</section>
                 <section class="esh-basket-title col-xs-2">Quantity</section>
                 <section class="esh-basket-title col-xs-2">Cost</section>
             </article>
@@ -34,6 +35,7 @@
                             </section>
                             <section class="esh-basket-item esh-basket-item--middle col-xs-3">@item.ProductName</section>
                             <section class="esh-basket-item esh-basket-item--middle col-xs-2">$ @item.UnitPrice.ToString("N2")</section>
+                            <section class="esh-basket-item esh-basket-item--middle col-xs-2">$ @item.ShippingPrice.ToString("N2")</section>
                             <section class="esh-basket-item esh-basket-item--middle col-xs-2">
                                 <input type="hidden" name="@("Items[" + i + "].Id")" value="@item.Id" />
                                 <input type="hidden" name="@("Items[" + i + "].Quantity")" value="@item.Quantity" />
@@ -46,6 +48,56 @@
                         </div>
                     </article>
                 }
+
+                <div class="container">
+                    <article class="esh-basket-titles esh-basket-titles--clean row">
+                        <section class="esh-basket-title col-xs-10"></section>
+                        <section class="esh-basket-title col-xs-2">Sub Total</section>
+                    </article>
+
+                    <article class="esh-basket-items row">
+                        <section class="esh-basket-item col-xs-10"></section>
+                        <section class="esh-basket-item esh-basket-item--mark col-xs-2">$ @Model.BasketModel.SubTotal().ToString("N2")</section>
+                    </article>
+
+                    <article class="esh-basket-items row">
+                        <section class="esh-basket-item col-xs-7"></section>
+                    </article>
+                </div>
+
+                <div class="container">
+                    <article class="esh-basket-titles esh-basket-titles--clean row">
+                        <section class="esh-basket-title col-xs-10"></section>
+                        <section class="esh-basket-title col-xs-2">Shipping</section>
+                    </article>
+
+                    <article class="esh-basket-items row">
+                        <section class="esh-basket-item col-xs-10"></section>
+                        <section class="esh-basket-item esh-basket-item--mark col-xs-2">$ @Model.BasketModel.Shipping().ToString("N2")</section>
+                    </article>
+
+                    <article class="esh-basket-items row">
+                        <section class="esh-basket-item col-xs-7"></section>
+                    </article>
+                </div>
+
+                <div class="container">
+                    <article class="esh-basket-titles esh-basket-titles--clean row">
+                        <section class="esh-basket-title col-xs-10"></section>
+                        <section class="esh-basket-title col-xs-2">Tax</section>
+                    </article>
+
+                    <article class="esh-basket-items row">
+                        <section class="esh-basket-item col-xs-10"></section>
+                        <section class="esh-basket-item esh-basket-item--mark col-xs-2">$ @Model.BasketModel.Tax().ToString("N2")</section>
+                    </article>
+
+                    <article class="esh-basket-items row">
+                        <section class="esh-basket-item col-xs-7"></section>
+                    </article>
+                </div>
+
+
 
                 <div class="container">
                     <article class="esh-basket-titles esh-basket-titles--clean row">
